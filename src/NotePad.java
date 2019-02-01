@@ -55,7 +55,7 @@ public class NotePad extends JFrame {
 					frame.setIconImage(icon);
 					frame.addWindowListener(new WindowAdapter() {
 						public void windowClosing(WindowEvent we) {
-							int returnvalue = JOptionPane.showConfirmDialog(frame, "Before closing, do you want to save conversation?", "Save", JOptionPane.YES_NO_CANCEL_OPTION);
+							int returnvalue = JOptionPane.showConfirmDialog(frame, "Before closing, do you want to save your document?", "Save", JOptionPane.YES_NO_CANCEL_OPTION);
 						    if (returnvalue == JOptionPane.YES_OPTION) {
 						    	JFileChooser c = new JFileChooser();
 								c.addChoosableFileFilter(new FileNameExtensionFilter("Text File","txt"));
@@ -247,6 +247,7 @@ public class NotePad extends JFrame {
 				scrollPane.setBackground(Color.WHITE);
 				textArea.setBackground(Color.WHITE);
 				textArea.setForeground(Color.BLACK);
+				textArea.setCaretColor(Color.BLACK);
 			}
 		});
 		
@@ -257,6 +258,7 @@ public class NotePad extends JFrame {
 				scrollPane.setBackground(Color.DARK_GRAY);
 				textArea.setBackground(Color.DARK_GRAY);
 				textArea.setForeground(Color.WHITE);
+				textArea.setCaretColor(Color.WHITE);
 			}
 		});
 		mnTheme.add(mntmDefaultTheme);
@@ -269,6 +271,7 @@ public class NotePad extends JFrame {
 				scrollPane.setBackground(new Color(154, 205, 50));
 				textArea.setBackground(new Color(154, 205, 50));
 				textArea.setForeground(new Color(210, 105, 30));
+				textArea.setCaretColor(new Color(210, 105, 30));
 			}
 		});
 		mnTheme.add(mntmGreenDosTheme);
@@ -280,9 +283,22 @@ public class NotePad extends JFrame {
 				scrollPane.setBackground(Color.BLACK);
 				textArea.setBackground(Color.BLACK);
 				textArea.setForeground(Color.GREEN);
+				textArea.setCaretColor(Color.GREEN);
 			}
 		});
 		mnTheme.add(mntmLinuxTerminalTheme);
+		
+		JMenuItem mntmUbuntuTerminalTheme = new JMenuItem("Ubuntu Terminal Theme");
+		mntmUbuntuTerminalTheme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.setBackground(new Color(153, 0, 102));
+				scrollPane.setBackground(new Color(153, 0, 102));
+				textArea.setBackground(new Color(153, 0, 102));
+				textArea.setForeground(Color.WHITE);
+				textArea.setCaretColor(Color.WHITE);
+			}
+		});
+		mnTheme.add(mntmUbuntuTerminalTheme);
 		
 		JMenu mnInfo = new JMenu("Info");
 		menuBar.add(mnInfo);
@@ -290,7 +306,7 @@ public class NotePad extends JFrame {
 		JMenuItem mntmCredits = new JMenuItem("Credits");
 		mntmCredits.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(scrollPane, "Simple Java Blackboard v0.01a\nDeveloped by Simone Mallia\nThanks for using my application :)", "Credits", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(scrollPane, "Simple Java Blackboard v0.02a\nDeveloped by Simone Mallia\nThanks for using my application :)", "Credits", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		mnInfo.add(mntmCredits);
@@ -323,6 +339,7 @@ public class NotePad extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		textArea = new JTextArea();
+		textArea.setCaretColor(Color.WHITE);
 		textArea.setFont(new Font("Dialog", Font.PLAIN, 13));
 		textArea.setForeground(Color.WHITE);
 		textArea.setBorder(null);
